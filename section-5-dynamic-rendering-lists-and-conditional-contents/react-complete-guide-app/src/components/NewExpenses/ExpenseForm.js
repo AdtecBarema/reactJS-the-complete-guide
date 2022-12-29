@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
+import "./NewExpense.js"
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
@@ -16,14 +17,17 @@ const ExpenseForm = (props) => {
   const dateHandler = (event) => {
     setEnteredDate(event.target.value);
   };
+
+  
   const submitHandler = (event) => {
     event.preventDefault();
 
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
+
     //This helps to handle two way binding: getting the value during eventChange such as SUBMIT, and then reset the state values to the default one
     props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
@@ -67,7 +71,7 @@ const ExpenseForm = (props) => {
       </div>
 
       <div className="new-expense__actions">
-        <button type="submit"> Add Expense</button>
+       <button type="button" onClick={props.onCancel}> Cancel </button> <button type="submit"> Add Expense</button>
       </div>
     </form>
   );

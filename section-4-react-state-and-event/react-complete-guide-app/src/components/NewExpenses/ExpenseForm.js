@@ -16,6 +16,8 @@ const ExpenseForm = (props) => {
   const dateHandler = (event) => {
     setEnteredDate(event.target.value);
   };
+
+  
   const submitHandler = (event) => {
     event.preventDefault();
 
